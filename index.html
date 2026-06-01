@@ -1,28 +1,96 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Video Player</title>
     <style>
-        video { display: block; margin-top: 20px; max-width: 100%; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f0f0;
+            color: #333;
+        }
+        header.hero {
+            background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+            position: relative;
+        }
+        header.hero::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 0;
+        }
+        header.hero * {
+            position: relative;
+            z-index: 1;
+        }
+        header.hero .logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid white;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+        header.hero h1 {
+            font-size: 2.5em;
+            margin: 0 0 5px 0;
+        }
+        header.hero p {
+            font-size: 1.2em;
+            margin: 5px 0;
+        }
+        main {
+            max-width: 700px;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            margin-top: 0;
+            color: #007BFF;
+        }
+        input[type="file"] {
+            margin-bottom: 20px;
+            padding: 8px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            display: block;
+        }
+        video {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            background: black;
+        }
     </style>
 </head>
 <body>
-     <header class="hero">
-  <img src="masgondrong.png" alt="Logo ALFA" class="logo">
-  <h1>Mas Gondrong</h1>
-  <p>Mini Player Musik & Video</p>
-  <p>💖WELCOME TO BATAM💖</p>
-     </header>
-    
-    <h1>Video Saya</h1>
-    <h1>Musik Saya</h1>
-    <input type="file" id="videoUploader" accept="video/*">
+    <header class="hero">
+        <img src="masgondrong.png" alt="Logo Mas Gondrong" class="logo" />
+        <h1>Mas Gondrong</h1>
+        <p>Mini Player Musik & Video</p>
+        <p>💖WELCOME TO BATAM💖</p>
+    </header>
 
-    <!-- Gunakan src langsung pada tag video -->
-    <video id="videoPlayer" controls src="amin.mp4" width="640">
-        Browser Anda tidak mendukung video.
-    </video>
+    <main>
+        <section>
+            <h2>Video Saya</h2>
+            <input type="file" id="videoUploader" accept="video/*" />
+            <video id="videoPlayer" controls src="amin.mp4">
+                Browser Anda tidak mendukung video.
+            </video>
+        </section>
+    </main>
 
     <script>
         const videoUploader = document.getElementById('videoUploader');
@@ -33,7 +101,7 @@
             if (file) {
                 const fileURL = URL.createObjectURL(file);
                 // Mengganti src video yang sedang diputar
-                videoPlayer.src = fileURL; 
+                videoPlayer.src = fileURL;
                 videoPlayer.play();
             }
         });
